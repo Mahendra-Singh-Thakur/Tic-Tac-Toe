@@ -30,6 +30,7 @@ startbtn.addEventListener("click", () => {
     main.classList.remove("hide");
     enablebtn();
 })
+let flag=true;
 boxes.forEach((box) => {
     box.addEventListener("click", () => {
         clickcount++;
@@ -42,9 +43,10 @@ boxes.forEach((box) => {
             chance = false;
         }
         box.disabled = true;
+        flag=true
         winner();
         console.log(clickcount);
-        if (clickcount === 9) {
+        if (clickcount === 9 && flag) {
             winpara.innerText = `GAME DRAW`;
             winpara.classList.remove("hide");
             windiv.classList.remove("hide");
@@ -60,6 +62,7 @@ let winner = () => {
             if (p0 === p1 && p1 === p2) {
                 winpara.innerText = `Winner ${p0}`;
                 disablebtn();
+                flag=false;
                 retartbtn.disabled = true;
                 startbtn.innerText = "New Game";
                 winpara.classList.remove("hide");
